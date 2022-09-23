@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+button{
+    cursor: pointer;
+}
+.wrapper{
+    margin: auto;
+    width: 1100px;
+}
+.content-wrapper{
+    display: flex;
+}
+.list-products{
+    border: 1px solid #333;
+    border-radius: 5px;
+    min-height: 500px;
+    flex: 1;
+    margin-right: 50px;
+}
+.list-products .head{
+    background-color: rgb(43, 118, 184);
+    padding: 8px 16px;
+    color: white;
+}
+.list-products .body{
+    display: flex;
+    padding: 16px;
+}
+.list-products .body .left{
+}
+.list-products .body .left .icon{
+    width: 100%;
+}
+.list-products .body .left, .list-products .body .right{
+    flex: 1;
+}
+.list-products .body .mid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 5;
+}
+.list-products .body .right{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.list-products .body .right .amount{
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+.list-products .body .right .price{
+    background-color: rgb(254, 118, 43);
+    border: none;
+    color: rgb(249, 208, 180);
+    padding: 4px 8px;
+    font-weight: 600px;
+}
+.list-products .body .right .price.disable{
+    background-color: rgb(198, 198, 198);
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+    font-weight: 600px;
+}
+
+.wp-your-cart{
+    
+    flex: 1;
+}
+.your-cart{
+    border: 1px solid rgb(238, 224, 223);
+    border-radius: 5px;
+    height: 450px;
+}
+.your-cart .head{
+    background-color: rgb(240, 222, 220);
+    padding: 8px 16px;
+    color: rgb(201, 147, 120);
+}
+.your-cart .items{
+    display: flex;
+    padding: 6px;
+}
+.your-cart .title{
+    font-weight: 600;
+}
+.your-cart .items .index{
+    flex: 1;
+}
+.your-cart .items .name{
+    flex: 3;
+}
+.your-cart .items .price{
+    flex: 2;
+}
+.your-cart .items .quantity{
+    flex: 2;
+    display: flex;
+}
+.your-cart .body .items .quantity input{
+    width: 80%;
+}
+.your-cart .items .subtotal{
+    flex: 3;
+}
+.your-cart .items .action{
+    flex: 3;
+}
+.your-cart .foot{
+    display: flex;
+}
+.your-cart > .cart > .foot > .left{
+    flex: 8;
+}
+.your-cart > .cart > .foot > .right{
+    flex: 6;
+}
+.wp-your-cart .noti.add{
+    background-color: rgb(221, 236, 215);
+    height: 80px;
+    margin-top: 20px;
+    color: rgb(136, 158, 140);
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+.wp-your-cart .noti .txt-bold.add{
+    color: rgb(81, 111, 84);
+    font-weight: 600;
+    margin-left: 5px;
+}
+.wp-your-cart .noti.delete{
+    background-color: rgb(239, 223, 223);
+    height: 80px;
+    margin-top: 20px;
+    color: rgb(207, 160, 160);
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+.wp-your-cart .noti .txt-bold.delete{
+    color: rgb(186, 116, 116);
+    font-weight: 600;
+    margin-left: 5px;
+}

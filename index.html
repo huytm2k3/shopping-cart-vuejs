@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Shopping Cart</h1>
+    </div>
+    <div class="wrapper content-wrapper">
+        <div class="list-products" id="list-products">
+            <div class="head">List Products</div>
+
+            <div class="body" v-for="(i, index) in listProducts">
+                <div class="left">
+                    <img class="icon" v-bind:src="i.image" alt="">
+                </div>
+                <div class="mid">
+                    <div class="name">{{ i.name }}</div>
+                    <div class="description">{{ i.description }}</div>
+                </div>
+                <div class="right">
+                    <div class="amount">{{ i.amount }}</div>
+                    <button v-if="i.amount" class="price" v-on:click="YourCartPush(i)">{{ PriceFormatting(i.price)
+                        }}</button>
+                    <button v-else class="price disable" disabled v-on:click="YourCartPush(i)">{{
+                        PriceFormatting(i.price) }}</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="wp-your-cart">
+
+            <div class="your-cart" id="your-cart">
+                <div class="cart">
+                    <div class="head">
+                        Your cart
+                    </div>
+                    <div class="items">
+                        <div class="index title">#</div>
+                        <div class="name title">Pokemon</div>
+                        <div class="price title">Price</div>
+                        <div class="quantity title">Quantity</div>
+                        <div class="subtotal title">Subtotal</div>
+                        <div class="action title">Action</div>
+                    </div>
+                    <div class="body" v-for="(i, index) in yourCart">
+                        <div class="items">
+                            <div class="index">{{ index += 1 }}</div>
+                            <div class="name">{{ i.name }}</div>
+                            <div class="price">{{ PriceFormatting(i.price) }}</div>
+                            <div class="quantity">
+                                <input type="text" v-model="i.quantity">
+                            </div>
+                            <div class="subtotal">{{ PriceFormatting(i.price * i.quantity || i.price) }}</div>
+                            <div class="action">
+                                <button v-on:click="YourCartDelete(i, index)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot">
+                        <div v-if="totalProduct>1" class="left">
+                            There are <span>{{ totalProduct }}</span> items in your shopping cart
+                        </div>
+                        <div v-else-if="totalProduct==1" class="left">
+                            There is <span>{{ totalProduct }}</span> item in your shopping cart
+                        </div>
+                        <div v-else class="left">
+                            There are no items in your shopping cart
+                        </div>
+                        <div class="right">{{ PriceFormatting(totalMoney) }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="noti-wp" id="noti-wp">
+                <div class="noti add" id="" v-if="type == 'add'">
+                    Added <span class="txt-bold add"> {{ name }}</span>
+                </div>
+                <div class="noti delete" id="" v-if="type == 'delete'">
+                    Deleted <span class="txt-bold delete"> {{ name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+
+</html>
