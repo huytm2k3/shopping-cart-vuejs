@@ -40,59 +40,61 @@ let yourCart = []
 let tempQuantity = 1;
 
 var productVueInstance = new Vue({
-    el : '#list-products',
+    el: '#list-products',
     data: {
         listProducts: listProducts
     },
     methods: {
-        PriceFormatting(number){
+        PriceFormatting(number) {
             return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number))
         },
-        YourCartPush(i){
-            cartVueInstance.yourCart.push(i)
-            notiInstance.name = `${i.name}`
-            notiInstance.type = `add`
-        },
-        checkQuantity(e, i){
-            e.target.value = 10
+        YourCartPush(i, index) {
+            if (cartVueInstance.yourCart.map(item => item.name).indexOf(i.name) == -1) {
+                cartVueInstance.yourCart.push(i)
+                cartVueInstance.$set(cartVueInstance.yourCart[cartVueInstance.yourCart.length - 1], "quantity", 1)
+                notiInstance.name = `${i.name}`
+                notiInstance.type = `add`
+            } else { 
+                cartVueInstance.$set(cartVueInstance.yourCart[cartVueInstance.yourCart.map(item => item.name).indexOf(i.name)], "quantity", cartVueInstance.yourCart[cartVueInstance.yourCart.map(item => item.name).indexOf(i.name)].quantity + 1 || 1)
+            }
         }
     },
 })
 var cartVueInstance = new Vue({
-    el : '#your-cart',
+    el: '#your-cart',
     data: {
         yourCart: yourCart
     },
     methods: {
-        PriceFormatting(number){
+        PriceFormatting(number) {
             return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number))
         },
-        YourCartDelete(i, index){
+        YourCartDelete(i, index) {
             yourCart.splice(index - 1, 1)
             notiInstance.name = `${i.name}`
             notiInstance.type = `delete`
         }
     },
     computed: {
-        totalMoney(){
+        totalMoney() {
             let result = 0
             this.yourCart.map((item) => {
-                if(item.quantity){
+                if (item.quantity) {
                     result += item.price * item.quantity
-                } else{
+                } else {
                     result += item.price
-                }  
+                }
             })
             return result
         },
-        totalProduct(){
+        totalProduct() {
             let result = 0
             this.yourCart.map((item) => {
-                if(item.quantity){
+                if (item.quantity) {
                     result += parseInt(item.quantity)
-                } else{
+                } else {
                     result += 1
-                }  
+                }
             })
             return result
         }
@@ -100,7 +102,7 @@ var cartVueInstance = new Vue({
 })
 
 var notiInstance = new Vue({
-    el : '#noti-wp',
+    el: '#noti-wp',
     data: {
         name: '',
         type: ''

@@ -28,9 +28,9 @@
                 </div>
                 <div class="right">
                     <div class="amount">{{ i.amount }}</div>
-                    <button v-if="i.amount" class="price" v-on:click="YourCartPush(i)">{{ PriceFormatting(i.price)
+                    <button v-if="i.amount" class="price" v-on:click="YourCartPush(i, index)">{{ PriceFormatting(i.price)
                         }}</button>
-                    <button v-else class="price disable" disabled v-on:click="YourCartPush(i)">{{
+                    <button v-else class="price disable" disabled v-on:click="YourCartPush(i, index)">{{
                         PriceFormatting(i.price) }}</button>
                 </div>
 
